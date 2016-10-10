@@ -7,9 +7,16 @@ logDirectory=$binDirectory/logs
 logFilePath=$logDirectory/organize-photos-`date +%Y-%m-%d_%H:%M.log`
 hereDirectory=$(pwd)
 
+printf "\n=================================================\n"
+echo PHOTO_ORGANIZER_PATH: $PHOTO_ORGANIZER_PATH
+echo binDirectory: $binDirectory
+echo logFilePath: $logFilePath
+echo hereDirectory: $hereDirectory
+printf "=================================================\n\n"
+
 mkdir -p ${logDirectory}
 
-npm install $PHOTO_ORGANIZER_PATH
+npm --prefix $PHOTO_ORGANIZER_PATH install $PHOTO_ORGANIZER_PATH
 
 rm -rf $hereDirectory/output
 

@@ -24,7 +24,10 @@ function composeTargetFilePath(targetDirectory, targetName, targetExtension, i) 
         var iWithLeadingZeros = addLeadingZeros(i, 3);
         result += `_${iWithLeadingZeros}`
     }
-    return `${result}.${targetExtension}`;
+    if (targetExtension) {
+        result += `.${targetExtension}`
+    }
+    return result;
 }
 
 function copyFile(source, target) {
