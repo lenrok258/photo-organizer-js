@@ -20,4 +20,4 @@ npm --prefix $PHOTO_ORGANIZER_PATH install $PHOTO_ORGANIZER_PATH
 
 rm -rf $hereDirectory/output
 
-node $PHOTO_ORGANIZER_PATH/run-me.js $hereDirectory | tee $logFilePath
+node $PHOTO_ORGANIZER_PATH/run-me.js "$hereDirectory" | tee $logFilePath
