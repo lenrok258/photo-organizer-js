@@ -24,7 +24,7 @@ function getFileModificationDate(filePath) {
     return statsAsync(filePath)
         .then(function(stats) {
             console.log(`File stats: ${JSON.stringify(stats)}`);
-            console.debug(`mtime: ${stats['mtime']}`)
+            console.log(`mtime: ${stats['mtime']}`)
             return moment(stats['mtime']); // Modified Time
         })
 }

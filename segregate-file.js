@@ -34,11 +34,11 @@ function copyFile(source, target) {
     console.log(`${source} ==> ${target}`);
 
     var inputStream = fs.createReadStream(source);
-    inputStream.on("error", function(err) {
+    inputStream.on("error", function (err) {
         console.error(err);
     });
     var outputStream = fs.createWriteStream(target);
-    outputStream.on("error", function(err) {
+    outputStream.on("error", function (err) {
         console.error(err);
     });
 
@@ -50,9 +50,15 @@ function addLeadingZeros(number, totalLength) {
     return s.substr(s.length - totalLength);
 }
 
-function segragateFile(filePath, date) {
+function shiftDate(date, timeShift) {
+    return date.add(timeShift, 'hours')
+}
+
+function segragateFile(filePath, date, timeShift) {
     if (date && date.isValid()) {
-        console.log(`File date: ${date.format()}`)
+        console.log(`Original file date: ${date.format()}`)
+        date = shiftDate(date, timeShift)
+        console.log(`Corrected (time shift = ${timeShift}) file date: ${date.format()}`)
 
         var fileTargetDirectory = createDirectory.forDate(config.outputDirectory, date);
         var fileTargetName = fileName.forDate(filePath, date);
