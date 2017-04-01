@@ -24,17 +24,21 @@ function getFileModificationDate(filePath) {
     return statsAsync(filePath)
         .then(function(stats) {
             console.log(`File stats: ${JSON.stringify(stats)}`);
+            console.debug(`mtime: ${stats['mtime']}`)
             return moment(stats['mtime']); // Modified Time
         })
 }
 
 function getDateFromFile(filePath) {
-    return getExifData(filePath)
-        .then(getDateFromExifData)
-        .catch(function(error) {
-            console.log(`Unable to get date from EXIF for file ${filePath}. Fallback to file create date`);
-            return getFileModificationDate(filePath);
-        });
+    console.log("EXIF data is *disabled*. Using file's modified timestamp")
+    return getFileModificationDate(filePath);
+
+    // return getExifData(filePath)
+    //     .then(getDateFromExifData)
+    //     .catch(function(error) {
+    //         console.log(`Unable to get date from EXIF for file ${filePath}. Fallback to file create date`);
+    //         return getFileModificationDate(filePath);
+    //     });
 }
 
 module.exports = getDateFromFile;
